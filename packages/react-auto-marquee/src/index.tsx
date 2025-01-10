@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import styled, { css, keyframes } from 'styled-components'
+import './index.css'
 
 interface AutoMarqueeProps {
   children: React.ReactNode
@@ -10,69 +10,6 @@ interface AutoMarqueeProps {
   pauseOnHover?: boolean
 }
 
-const scrollVertical = keyframes`
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-50%);
-  }
-`
-
-const scrollHorizontal = keyframes`
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-`
-
-const Container = styled.div`
-  overflow: hidden;
-  --scroll-duration: 10000ms;
-`
-
-const Content = styled.div<{
-  $direction: 'vertical' | 'horizontal'
-  $isScrolling: boolean
-  $pauseOnHover: boolean
-  $duration: number
-}>`
-  display: flex;
-  flex-direction: ${(props) =>
-    props.$direction === 'vertical' ? 'column' : 'row'};
-  align-items: ${(props) =>
-    props.$direction === 'horizontal' ? 'center' : 'stretch'};
-
-  ${(props) =>
-    props.$isScrolling &&
-    css`
-      animation: ${props.$direction === 'vertical'
-          ? scrollVertical
-          : scrollHorizontal}
-        ${props.$duration}ms linear infinite;
-
-      ${props.$pauseOnHover &&
-      css`
-        &:hover {
-          animation-play-state: paused;
-        }
-      `}
-    `}
-`
-
-const ScrollItem = styled.div<{
-  $direction?: 'vertical' | 'horizontal'
-}>`
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: ${(props) =>
-    props.$direction === 'vertical' ? 'column' : 'row'};
-  align-items: ${(props) =>
-    props.$direction === 'vertical' ? 'stretch' : 'center'};
-`
-
 const AutoMarquee: React.FC<AutoMarqueeProps> = ({
   children,
   className = '',
@@ -82,7 +19,6 @@ const AutoMarquee: React.FC<AutoMarqueeProps> = ({
   pauseOnHover = true
 }) => {
   const [needsScroll, setNeedsScroll] = useState(false)
-  const [duration, setDuration] = useState(10000)
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
@@ -101,12 +37,12 @@ const AutoMarquee: React.FC<AutoMarqueeProps> = ({
       setNeedsScroll(needsToScroll)
 
       if (needsToScroll) {
-        const newDuration =
+        const duration =
           direction === 'vertical'
             ? (content.clientHeight / speed) * 20
             : (content.clientWidth / speed) * 20
 
-        setDuration(newDuration)
+        container.style.setProperty('--scroll-duration', `${duration}ms`)
       }
     }
 
@@ -121,22 +57,24 @@ const AutoMarquee: React.FC<AutoMarqueeProps> = ({
     }
   }, [children, direction, speed])
 
+  const contentClass =
+    `auto-marquee-content ${direction} ${needsScroll ? 'scrolling' : ''} ${pauseOnHover ? 'pause-on-hover' : ''}`.trim()
+
   return (
-    <Container ref={containerRef} className={className} style={style}>
-      <Content
-        ref={contentRef}
-        $direction={direction}
-        $isScrolling={needsScroll}
-        $pauseOnHover={pauseOnHover}
-        $duration={duration}
-      >
-        <ScrollItem $direction={direction}>{children}</ScrollItem>
+    <div
+      className={`auto-marquee-container ${className}`}
+      style={style}
+      ref={containerRef}
+    >
+      <div className={contentClass} ref={contentRef}>
+        <div className='auto-marquee-scroll-item'>{children}</div>
         {needsScroll && (
-          <ScrollItem $direction={direction}>{children}</ScrollItem>
+          <div className='auto-marquee-scroll-item'>{children}</div>
         )}
-      </Content>
-    </Container>
+      </div>
+    </div>
   )
 }
 
+export { AutoMarqueeProps }
 export default AutoMarquee

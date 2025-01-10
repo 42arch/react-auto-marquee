@@ -1,10 +1,10 @@
 import { defineConfig } from 'tsup'
 
-export default defineConfig((options) => ({
+export default defineConfig({
   entryPoints: ['src/index.tsx'],
   format: ['cjs', 'esm'],
   dts: true,
   sourcemap: true,
-  external: ['react', 'react-dom', 'styled-components'],
-  ...options
-}))
+  injectStyle: true,
+  external: ['react', 'react-dom']
+})

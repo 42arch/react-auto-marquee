@@ -1,14 +1,28 @@
 {
   "name": "react-auto-marquee",
   "version": "1.0.0",
-  "sideEffects": false,
-  "license": "MIT",
+  "description": "",
+  "sideEffects": true,
   "publishConfig": {
     "access": "public"
+  },
+  "license": "MIT",
+  "author": "Ren Dan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/42arch/react-auto-marquee"
+  },
+  "keywords": [],
+  "homepage": "https://github.com/42arch/react-auto-marquee#readme",
+  "bugs": {
+    "url": "https://github.com/42arch/react-auto-marquee/issues"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
