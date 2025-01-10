@@ -1,8 +1,0 @@
-{
-  "extends": "@42arch/typescript-config/react-library.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["."],
-  "exclude": ["node_modules", "dist", "build"]
-}
