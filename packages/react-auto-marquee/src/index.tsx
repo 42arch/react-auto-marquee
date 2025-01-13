@@ -76,5 +76,5 @@ const AutoMarquee: React.FC<AutoMarqueeProps> = ({
   )
 }
 
-export { AutoMarqueeProps }
+export type { AutoMarqueeProps }
 export default AutoMarquee

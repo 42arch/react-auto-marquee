@@ -5,20 +5,20 @@
 
 /* Keyframes */
 @keyframes scroll-vertical {
-  0% {
+  from {
     transform: translateY(0);
   }
-  100% {
+  to {
     transform: translateY(-50%);
   }
 }
 
 @keyframes scroll-horizontal {
-  0% {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translateX(calc(-50% - 0.5px));
   }
 }
 
@@ -38,6 +38,7 @@
 .auto-marquee-content.horizontal {
   flex-direction: row;
   align-items: center;
+  width: max-content;
 }
 
 .auto-marquee-content.vertical.scrolling {
