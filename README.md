@@ -1,12 +1,14 @@
 # React Auto Marquee
 
-## Getting start
+## Quick Start
+
+### 1. Installation
 
 ```sh
 npm install react-auto-marquee
 ```
 
-## How to use
+### 2. Usage
 
 ```tsx
 import AutoMarquee from 'react-auto-marquee'
@@ -14,7 +16,7 @@ import AutoMarquee from 'react-auto-marquee'
 function App() {
   return (
     <div>
-      <Marquee
+      <AutoMarquee
         style={{
           width: '200px',
           height: '300px'
@@ -35,10 +37,18 @@ function App() {
             item - {item}
           </div>
         ))}
-      </Marquee>
+      </AutoMarquee>
     </div>
   )
 }
 ```
 
-### Apps and Packages
+## Props
+
+| prop         | type                       | defaultValue |
+| ------------ | -------------------------- | ------------ |
+| className    | string                     | ''           |
+| style        | React.CSSProperties        | {}           |
+| speed        | number                     | 0            |
+| direction    | 'horizontal' \| 'vertical' | 'vertical'   |
+| pauseOnHover | boolean                    | true         |
