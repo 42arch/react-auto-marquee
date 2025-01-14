@@ -1,5 +1,7 @@
 # React Auto Marquee
 
+A lightweight and high-performance auto-scrolling (marquee) react component library.
+
 ## Quick Start
 
 ### 1. Installation
@@ -43,12 +45,16 @@ function App() {
 }
 ```
 
-## Props
+### 3. Props
 
-| prop         | type                       | defaultValue |
-| ------------ | -------------------------- | ------------ |
-| className    | string                     | ''           |
-| style        | React.CSSProperties        | {}           |
-| speed        | number                     | 0            |
-| direction    | 'horizontal' \| 'vertical' | 'vertical'   |
-| pauseOnHover | boolean                    | true         |
+| prop         | type                       | default value |
+| ------------ | -------------------------- | ------------- |
+| className    | string                     | ''            |
+| style        | React.CSSProperties        | {}            |
+| speed        | number                     | 0             |
+| direction    | 'horizontal' \| 'vertical' | 'vertical'    |
+| pauseOnHover | boolean                    | true          |
+
+## Examples
+
+https://react-auto-marquee.vercel.app/

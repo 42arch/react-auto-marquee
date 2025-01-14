@@ -1,7 +1,7 @@
 {
   "name": "react-auto-marquee",
   "version": "1.1.1",
-  "description": "",
+  "description": "A lightweight and high-performance auto-scrolling (marquee) react component library.",
   "sideEffects": true,
   "publishConfig": {
     "access": "public"
